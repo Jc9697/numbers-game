@@ -2,7 +2,10 @@ const button = document.getElementById("button");
 const numbersText = document.getElementById("text");
 const input = document.getElementById("input");
 const score = document.getElementById("score");
+const timer = document.getElementById("timer");
+const displayText = document.getElementById("display");
 let points = 0;
+let time = 30;
 
 async function fetchNumbers() {
   try {
@@ -20,13 +23,10 @@ async function fetchNumbers() {
   }
 }
 
-button.addEventListener("click", () => {
-  fetchNumbers();
-});
-
 input.focus();
 
 input.addEventListener("keydown", (event) => {
+  timer.textContent = "Timer: " + time;
   const numberSplit = numbersText.textContent.split("+");
   const numberSum = parseInt(numberSplit[0]) + parseInt(numberSplit[1]);
   if (event.key === "Enter") {
@@ -34,7 +34,7 @@ input.addEventListener("keydown", (event) => {
       input.value = "";
       points += 100;
       fetchNumbers();
-      score.textContent = "score: " + points;
+      score.textContent = "Score: " + points;
     } else if (!input.value) {
       console.log("Enter number");
     } else {
