@@ -7,6 +7,20 @@ const displayText = document.getElementById("display");
 let points = 0;
 let time = 30;
 
+const ws = new WebSocket("ws://localhost:3000");
+
+ws.onopen = () => {
+  console.log("Connected to server");
+};
+
+ws.onmessage = (event) => {
+  console.log(event);
+};
+
+ws.onclose = () => {
+  console.log("Disconnected from server");
+};
+
 async function fetchNumbers() {
   try {
     const response = await fetch("http://localhost:3000");

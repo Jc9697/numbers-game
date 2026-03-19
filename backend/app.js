@@ -24,13 +24,34 @@ function getNumbers() {
   return [randomize(), randomize()];
 }
 
+wss.on("connection", (ws) => {
+  console.log("Client connected");
+  ws.send("Welcome to the WebSocket server");
+
+  ws.on("message", (ws) => {
+    console.log(`Received message: ${ws}`);
+  });
+
+  ws.on("close", (ws) => {
+    console.log("Client disconnected");
+  });
+
+  ws.on("error", (ws) => {
+    console.log(`Error:${ws.error}`);
+  });
+});
+
 app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.get("/numbersgame", (req, res) => {
   res.render("index", {
     firstNumber: getNumbers()[0],
     secondNumber: getNumbers()[0],
   });
 });
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
