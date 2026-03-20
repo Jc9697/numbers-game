@@ -24,6 +24,11 @@ function getNumbers() {
   return [randomize(), randomize()];
 }
 
+function sessionId() {
+  let randomSessionId = Math.floor(Math.random() * 10000);
+  return randomSessionId;
+}
+
 wss.on("connection", (ws) => {
   console.log("Client connected");
   ws.send("Welcome to the WebSocket server");
@@ -42,6 +47,8 @@ wss.on("connection", (ws) => {
 });
 
 app.get("/", (req, res) => {
+  let playerSessionId = sessionId();
+  console.log(playerSessionId);
   res.render("home");
 });
 
