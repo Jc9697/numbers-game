@@ -1,25 +1,15 @@
+import { Server } from "socket.io";
 const button = document.getElementById("button");
 const numbersText = document.getElementById("text");
 const input = document.getElementById("input");
 const score = document.getElementById("score");
 const timer = document.getElementById("timer");
 const displayText = document.getElementById("display");
+
+const socket = io();
+
 let points = 0;
 let time = 30;
-
-const ws = new WebSocket("ws://localhost:3000");
-
-ws.onopen = () => {
-  console.log("Connected to server");
-};
-
-ws.onmessage = (event) => {
-  console.log(event);
-};
-
-ws.onclose = () => {
-  console.log("Disconnected from server");
-};
 
 async function fetchNumbers() {
   try {

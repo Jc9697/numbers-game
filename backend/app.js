@@ -1,12 +1,12 @@
 import express from "express";
 import { createServer } from "node:http";
-import { WebSocketServer } from "ws";
+import { Server } from "socket.io";
 
 const app = express();
 const port = 3000;
 
 const server = createServer(app);
-const wss = new WebSocketServer({ server });
+const io = new Server(server);
 
 app.set("view engine", "ejs");
 app.set("views", "./frontend/views");
@@ -29,21 +29,8 @@ function sessionId() {
   return randomSessionId;
 }
 
-wss.on("connection", (ws) => {
-  console.log("Client connected");
-  ws.send("Welcome to the WebSocket server");
-
-  ws.on("message", (ws) => {
-    console.log(`Received message: ${ws}`);
-  });
-
-  ws.on("close", (ws) => {
-    console.log("Client disconnected");
-  });
-
-  ws.on("error", (ws) => {
-    console.log(`Error:${ws.error}`);
-  });
+io.on("connection", (socket) => {
+  console.log("A user connected");
 });
 
 app.get("/", (req, res) => {
