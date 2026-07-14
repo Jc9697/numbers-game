@@ -31,18 +31,23 @@ function sessionId() {
 
 io.on("connection", (socket) => {
   console.log("A user connected");
+  console.log(socket.id);
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
 });
 
 app.get("/", (req, res) => {
-  let playerSessionId = sessionId();
-  console.log(playerSessionId);
   res.render("home");
 });
 
 app.get("/numbersgame", (req, res) => {
+  let playerSessionId = sessionId();
+  console.log(playerSessionId);
   res.render("index", {
     firstNumber: getNumbers()[0],
     secondNumber: getNumbers()[0],
+    playerSessionIdNumber: playerSessionId,
   });
 });
 

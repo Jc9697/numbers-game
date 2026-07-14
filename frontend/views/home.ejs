@@ -7,14 +7,15 @@
   </head>
   <body>
     <p>
-      Welcome. Share this session id with a friend after creating a room so that
-      they can join you
+      Welcome. Create a room and then share the given session id with a friend
+      so that they can join you
     </p>
-    <p>Session id: <%= %></p>
     <form action="/numbersgame">
       <button type="submit" id="getId">Create room</button>
     </form>
+    <form action="/numbersgame">
+      <button type="submit" id="joinRoom">Join room</button>
+    </form>
     <script src="/public/home.js"></script>
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
   </body>
 </html>

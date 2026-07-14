@@ -1,4 +1,3 @@
-import { Server } from "socket.io";
 const button = document.getElementById("button");
 const numbersText = document.getElementById("text");
 const input = document.getElementById("input");
@@ -8,12 +7,24 @@ const displayText = document.getElementById("display");
 
 const socket = io();
 
+socket.on("connect", () => {
+  console.log("Connected to server");
+});
+
+socket.on("disconnect", () => {
+  console.log("Disconnected from the server");
+});
+
+socket.on("connect_error", (err) => {
+  console.log(`Connection error: ${err.message}`);
+});
+
 let points = 0;
 let time = 30;
 
 async function fetchNumbers() {
   try {
-    const response = await fetch("http://localhost:3000");
+    const response = await fetch("http://localhost:3000/numbersgame");
     if (!response.ok) {
       throw new Error("Error: status", response.status);
     }
@@ -29,8 +40,15 @@ async function fetchNumbers() {
 
 input.focus();
 
-input.addEventListener("keydown", (event) => {
+timer.textContent = "Timer: " + time;
+
+/*setInterval(() => {
+  time--;
   timer.textContent = "Timer: " + time;
+}, 1000);
+*/
+
+input.addEventListener("keydown", (event) => {
   const numberSplit = numbersText.textContent.split("+");
   const numberSum = parseInt(numberSplit[0]) + parseInt(numberSplit[1]);
   if (event.key === "Enter") {
@@ -42,7 +60,7 @@ input.addEventListener("keydown", (event) => {
     } else if (!input.value) {
       console.log("Enter number");
     } else {
-      console.log("Wrong");
+      console.log("Incorrect");
     }
   }
 });
