@@ -42,12 +42,14 @@ input.focus();
 
 timer.textContent = "Timer: " + time;
 
-/*setInterval(() => {
+/*const countdownTimer = setInterval(() => {
   time--;
   timer.textContent = "Timer: " + time;
+  if (time <= 0) {
+    clearInterval(countdownTimer);
+  }
 }, 1000);
 */
-
 input.addEventListener("keydown", (event) => {
   const numberSplit = numbersText.textContent.split("+");
   const numberSum = parseInt(numberSplit[0]) + parseInt(numberSplit[1]);
