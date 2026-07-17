@@ -3,6 +3,9 @@ const numbersText = document.getElementById("text");
 const input = document.getElementById("input");
 const score = document.getElementById("score");
 const timer = document.getElementById("timer");
+const timeInput = document.getElementById("timeInput");
+const customizer = document.getElementById("customize");
+const reset = document.getElementById("reset");
 const displayText = document.getElementById("display");
 
 const socket = io();
@@ -20,7 +23,7 @@ socket.on("connect_error", (err) => {
 });
 
 let points = 0;
-let time = 30;
+//let time = 30;
 
 async function fetchNumbers() {
   try {
@@ -40,7 +43,7 @@ async function fetchNumbers() {
 
 input.focus();
 
-timer.textContent = "Timer: " + time;
+//timer.textContent = "Timer: " + time;
 
 /*const countdownTimer = setInterval(() => {
   time--;
@@ -65,4 +68,8 @@ input.addEventListener("keydown", (event) => {
       console.log("Incorrect");
     }
   }
+});
+
+reset.addEventListener("click", (event) => {
+  timeInput.value = 30;
 });

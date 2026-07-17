@@ -7,17 +7,20 @@
     <title>Document</title>
   </head>
   <body>
-    <p>Session id: <%= playerSessionIdNumber %></p>
-    <p id="text"><%= firstNumber %> + <%= secondNumber %></p>
-    <input
-      type="number"
-      id="input"
-      autocomplete="off"
-      inputmode="numeric"
-      pattern="[0-9]*"
-    />
-    <p id="score">Score: 0</p>
-    <p id="timer">Timer: 30</p>
+    <div class="container">
+      <p>Session id: <%= playerSessionIdNumber %></p>
+      <p id="text"><%= firstNumber %> + <%= secondNumber %></p>
+      <input
+        type="number"
+        id="input"
+        autocomplete="off"
+        inputmode="numeric"
+        pattern="[0-9]*"
+      />
+      <p id="score">Score: 0</p>
+      <p id="timer">Timer:<input type="number" id="timeInput" value="30" /></p>
+      <button id="reset">Reset time</button>
+    </div>
     <script src="public/index.js" type="module"></script>
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
   </body>
