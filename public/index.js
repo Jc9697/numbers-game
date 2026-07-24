@@ -4,7 +4,6 @@ const input = document.getElementById("input");
 const score = document.getElementById("score");
 const timer = document.getElementById("timer");
 const timeInput = document.getElementById("timeInput");
-const customizer = document.getElementById("customize");
 const reset = document.getElementById("reset");
 const displayText = document.getElementById("display");
 
@@ -71,5 +70,9 @@ input.addEventListener("keydown", (event) => {
 });
 
 reset.addEventListener("click", (event) => {
-  timeInput.value = 30;
+  if(timer.innerText.length > 2) {
+    return;
+  } else {
+    timer.innerText = 30;
+  }
 });

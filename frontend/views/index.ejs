@@ -17,9 +17,11 @@
         inputmode="numeric"
         pattern="[0-9]*"
       />
-      <p id="score">Score: 0</p>
-      <p id="timer">Timer:<input type="number" id="timeInput" value="30" /></p>
-      <button id="reset">Reset time</button>
+      <p>Score</p>
+      <p id="score">0</p>
+      <p>Timer</p>
+      <p id="timer" contenteditable="plaintext-only" inputmode="numeric">30</p>
+      <button id="reset">Reset</button>
     </div>
     <script src="public/index.js" type="module"></script>
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
