@@ -52,25 +52,24 @@ input.focus();
   }
 }, 1000);
 */
-input.addEventListener("keydown", (event) => {
+input.addEventListener("input", (event) => {
   const numberSplit = numbersText.textContent.split("+");
   const numberSum = parseInt(numberSplit[0]) + parseInt(numberSplit[1]);
-  if (event.key === "Enter") {
-    if (numberSum == input.value) {
-      input.value = "";
-      points += 100;
-      fetchNumbers();
-      score.textContent = "Score: " + points;
-    } else if (!input.value) {
-      console.log("Enter number");
-    } else {
-      console.log("Incorrect");
-    }
+
+  if (numberSum == event.target.value) {
+    input.value = "";
+    points += 100;
+    fetchNumbers();
+    score.textContent = "Score: " + points;
+  } else if (!input.value) {
+    console.log("Enter number");
+  } else {
+    console.log("Incorrect");
   }
 });
 
 reset.addEventListener("click", (event) => {
-  if(timer.innerText.length > 2) {
+  if (timer.innerText.length > 2) {
     return;
   } else {
     timer.innerText = 30;
